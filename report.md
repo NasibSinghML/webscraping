@@ -21,6 +21,10 @@ Database Storage: Used mysql-connector-python to insert the extracted data into 
 
 #Challenges
 
+Variety of Link Formats: Social media links can appear in various formats, such as full URLs (https://www.instagram.com/username), relative URLs (/username), or even encoded URLs (/redirect?url=https%3A%2F%2Fwww.instagram.com%2Fusername). Handling these different formats robustly requires preprocessing and sometimes decoding of URLs.
+
+Detection and Avoidance of Non-Social Links: Not all URLs containing social media domain names are direct links to social media profiles. Some may be internal links, redirects, or other unrelated content. It’s crucial to filter out such links to ensure only relevant social media profiles are extracted.
+
 Handling Different URL Formats: Ensuring URLs are properly formatted before processing.
 Regex Complexity: Crafting regex patterns to accurately identify and ignore specific social media links.
 
