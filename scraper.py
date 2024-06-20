@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import re
 import pandas as pd
 import time
+# from urllib.parse import urlparse, parse_qs
 load_dotenv()
 
 # MySQL database connection
@@ -69,7 +70,7 @@ def extract_social_media_links(soup, processed_domains):
     def should_ignore(url):
         for domain in social_media_domains:
             # Check if the URL starts with the domain pattern
-            if re.match(rf'^https?://([a-zA-Z])?{re.escape(domain)}', url):
+            if re.match(rf'^https?://(www\.)?{re.escape(domain)}', url):
                 return True    
             return False
 
@@ -81,7 +82,22 @@ def extract_social_media_links(soup, processed_domains):
             if domain and domain[0] not in processed_domains :
                 social_media_links.append(href)
                 processed_domains.add(domain[0])
-                
+
+
+    
+    # for link in soup.find_all('a', href=True):
+    #     href = link['href']
+    #     parsed_url = urlparse(href)
+    #     query_params = parse_qs(parsed_url.query)
+    #     location = query_params.get('location', [''])[0]
+
+    #     if location and match_pattern(location):
+    #         domain = re.findall(r'https?://([^/]+)/', location)
+    #         if domain and domain[0] not in processed_domains:
+    #             social_media_links.append(location)
+    #             processed_domains.add(domain[0])
+
+    # return ' , '.join(social_media_links)          
 
     # # Check for links in elements with specific IDs or classes
     # social_media_id_class = [
